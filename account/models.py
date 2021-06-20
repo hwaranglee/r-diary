@@ -6,6 +6,7 @@ from diary.metadata import standards
 
 
 class User(models.Model):
+    id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=20)
     email = models.EmailField(max_length=254)
     password = models.CharField(min_length=6, max_length=200)
@@ -24,7 +25,7 @@ class User(models.Model):
 
 
 class LoginHistory(models.Model):
-    userId = models.ForeignKey(User.id)
+    userId = models.ForeignKey(User.id, on_delete=False)
     type = models.CharField(max_length=10, choices=standards.AccountType.choices)
     platform = models.CharField(max_length=1000)
     device = models.CharField(max_length=1000)
